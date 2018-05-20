@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/19 20:23:03 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/19 22:01:31 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void		f_color(t_fractol *m, int x, int y, int n)
 	int		i;
 
 	i = (x * 4) + (y * m->size);
-	m->data[i] = n;
-	m->data[++i] = 255 * n;
-	m->data[++i] = n % 255;
-	//printf("data[%d] = [%d]\n", i, m->data[i]);
+	if (n % 2 == 0)
+		m->data[i++] = ft_rgb(255, 133, 170);
+	m->data[i] = ft_rgb(255, 255, 255);
 }
 
 void	julia(t_fractol *m)
@@ -33,28 +32,24 @@ void	julia(t_fractol *m)
 	int		y;
 	int		i;
 
-	m->iter = 50;
-	m->zoom = 1;
-	m->x_move = 0;
-	m->y_move = 0;
 	y = -1;
 	while (++y < WIN)
 	{
 		x = -1;
 		while (++x < WIN)
 		{
-			zx = 1.5 * (x - (WIN / 2)) / (WIN * 0.5 * m->zoom) + m->x_move;
-			zy = (y - WIN / 2) / (WIN * 0.5 * m->zoom) + m->y_move;
+			zx = 1.5 * (x - (WIN / 2)) / (WIN * 0.2 * m->zoom) + m->x_move;
+			zy = (y - WIN / 2) / (WIN * 0.2 * m->zoom) + m->y_move;
 			i = 0;
 			while ((zx * zx) + (zy * zy) < 4 && i < m->iter)
 			{
 				xtemp = zx * zx - zy * zy;
-				zy = 2 * zx * zy - 0.662;
+				zy = 2 * zx * zy + 0.662;
 				zx = xtemp + 0.282;
 				i++;
 			}
 			if (i < m->iter)
-				f_color(m, x, y, 1000 * i);
+				f_color(m, x, y, i);
 		}
 	}
 	mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
@@ -68,29 +63,25 @@ void	mandelbrot(t_fractol *m)
 	int		x;
 	int		y;
 	int		i;
-	int		x0;
-	int		y0;
+	double	x0;
+	double	y0;
 
-	m->iter = 50;
-	m->zoom = 1;
-	m->x_move = 0;
-	m->y_move = 0;
 	y = -1;
 	while (++y < WIN)
 	{
 		x = -1;
 		while (++x < WIN)
 		{
-			zx = 1.5 * (x - (WIN / 2)) / (WIN * 0.5 * m->zoom) + m->x_move;
-			zy = (y - WIN / 2) / (WIN * 0.5 * m->zoom) + m->y_move;
+			zx = (x - (WIN / 2)) / (WIN * 0.2 * m->zoom) + m->x_move;
+			zy = (y - WIN / 2) / (WIN * 0.2 * m->zoom) + m->y_move;
 			x0 = zx;
 			y0 = zy;
 			i = 0;
 			while ((zx * zx) + (zy * zy) < 4 && i < m->iter)
 			{
-				xtemp = zx * zx - zy * zy + x0;
+				xtemp = zx * zx - zy * zy;
 				zy = 2 * zx * zy + y0;
-				zx = xtemp;
+				zx = xtemp + x0;
 				i++;
 			}
 			if (i < m->iter)
@@ -102,8 +93,11 @@ void	mandelbrot(t_fractol *m)
 
 int		keyfunction(int key, t_fractol *m)
 {
-	(void)m;
 	key == 53 ? exit(0) : 0;
+	key == 27 ? m->zoom -= 1 : 0;
+	key == 24 ? m->zoom += 1 : 0;
+	printf("zoom[%d]\n", m->zoom);
+	mandelbrot(m);
 	return (0);
 }
 
@@ -113,6 +107,14 @@ void		init_mlx(t_fractol *m)
 	m->win_ptr = mlx_new_window(m->mlx_ptr, WIN, WIN, "FRACT'OL by KSONU");
 	m->image = mlx_new_image(m->mlx_ptr, WIN, WIN);
 	m->data = mlx_get_data_addr(m->image, &m->bpp, &m->size, &m->endian);
+}
+
+void		init_env(t_fractol *m)
+{
+	m->x_move = 0;
+	m->y_move = 0;
+	m->iter = 50;
+	m->zoom = 1;
 }
 
 void		error_message(void)
@@ -132,11 +134,11 @@ int			main(int ac, char **av)
 		error_message();
 	//m->fractal = av[1];
 	init_mlx(m);
+	init_env(m);
 	if (!ft_strcmp(av[1], "Mandelbrot"))
 		mandelbrot(m);
 	if (!ft_strcmp(av[1], "Julia"))
 		julia(m);
-	mandelbrot(m);
 	mlx_hook(m->win_ptr, 2, 0, keyfunction, m);
 	mlx_loop(m->mlx_ptr);
 }
