@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/19 20:13:06 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/19 20:23:03 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	julia(t_fractol *m)
 	m->zoom = 1;
 	m->x_move = 0;
 	m->y_move = 0;
-	x = -1;
-	while (++x < WIN)
+	y = -1;
+	while (++y < WIN)
 	{
-		y = -1;
-		while (++y < WIN)
+		x = -1;
+		while (++x < WIN)
 		{
 			zx = 1.5 * (x - (WIN / 2)) / (WIN * 0.5 * m->zoom) + m->x_move;
 			zy = (y - WIN / 2) / (WIN * 0.5 * m->zoom) + m->y_move;
@@ -54,7 +54,7 @@ void	julia(t_fractol *m)
 				i++;
 			}
 			if (i < m->iter)
-				f_color(m, y, x, 1000 * i);
+				f_color(m, x, y, 1000 * i);
 		}
 	}
 	mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
@@ -75,11 +75,11 @@ void	mandelbrot(t_fractol *m)
 	m->zoom = 1;
 	m->x_move = 0;
 	m->y_move = 0;
-	x = -1;
-	while (++x < WIN)
+	y = -1;
+	while (++y < WIN)
 	{
-		y = -1;
-		while (++y < WIN)
+		x = -1;
+		while (++x < WIN)
 		{
 			zx = 1.5 * (x - (WIN / 2)) / (WIN * 0.5 * m->zoom) + m->x_move;
 			zy = (y - WIN / 2) / (WIN * 0.5 * m->zoom) + m->y_move;
@@ -94,7 +94,7 @@ void	mandelbrot(t_fractol *m)
 				i++;
 			}
 			if (i < m->iter)
-				f_color(m, y, x, 1000 * i);
+				f_color(m, x, y, 1000 * i);
 		}
 	}
 	mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
@@ -130,8 +130,12 @@ int			main(int ac, char **av)
 	m = (t_fractol*)malloc(sizeof(t_fractol));
 	if (ac != 2)
 		error_message();
-	m->fractal = av[1];
+	//m->fractal = av[1];
 	init_mlx(m);
+	if (!ft_strcmp(av[1], "Mandelbrot"))
+		mandelbrot(m);
+	if (!ft_strcmp(av[1], "Julia"))
+		julia(m);
 	mandelbrot(m);
 	mlx_hook(m->win_ptr, 2, 0, keyfunction, m);
 	mlx_loop(m->mlx_ptr);
