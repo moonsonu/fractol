@@ -12,17 +12,17 @@ typedef struct		s_fractol
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	void			*data;
+	char			*data;
 	void			*image;
 	char			*fractal;
 	int				bpp;
 	int				size;
 	int				endian;
-	double			newr;
-	double			newi;
-	double			oldr;
-	double			oldi;
-	int				width;
-	int				height;
+	int				x_move;
+	int				y_move;
+	int				zoom;
+	int				iter;
+	int				start;
+	int				end;
 }					t_fractol;
 #endif
