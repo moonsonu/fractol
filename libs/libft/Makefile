@@ -6,7 +6,7 @@
 #    By: ksonu <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/05 01:26:55 by ksonu             #+#    #+#              #
-#    Updated: 2018/04/28 19:58:50 by ksonu            ###   ########.fr        #
+#    Updated: 2018/05/19 21:30:34 by ksonu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,8 @@ SRC =	ft_memset.c		\
 		ft_splitdel.c	\
 		ft_wdcount.c	\
 		get_next_line.c	\
-		ft_atoi_base.c
+		ft_atoi_base.c	\
+		ft_rgb.c
 OBJ = $(SRC:.c=.o)
 
 HEADER = libft.h

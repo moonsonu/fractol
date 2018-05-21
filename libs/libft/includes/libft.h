@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/01 01:10:49 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 19:58:39 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/19 21:30:59 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void				ft_splitdel(char **split);
 int					ft_wdcount(char *str, char c);
 int					get_next_line(const int fd, char **line);
 int					ft_atoi_base(const char *str, int base);
+int					ft_rgb(int r, int g, int b);
 #endif

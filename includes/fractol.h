@@ -18,11 +18,29 @@ typedef struct		s_fractol
 	int				bpp;
 	int				size;
 	int				endian;
-	int				x_move;
-	int				y_move;
-	int				zoom;
+	double			x_move;
+	double			y_move;
+	double			zoom;
 	int				iter;
 	int				start;
 	int				end;
 }					t_fractol;
+
+/* main */
+void		error_message(void);
+
+/* f_setting */
+void		f_color(t_fractol *m, int x, int y, int n);
+void		init_mlx(t_fractol *m);
+void		init_env(t_fractol *m);
+
+/* f_hooks */
+int			keyfunction(int key, t_fractol *m);
+//int			mousefunction(int key, int x, int y, t_fractol *m);
+
+/* f_sets*/
+void		*julia(void *thread);
+void		*mandelbrot(void *thread);
+void		f_multithrd(t_fractol *m);
+
 #endif
