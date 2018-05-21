@@ -27,6 +27,9 @@ typedef struct		s_fractol
 	int				cursor;
 	int				cursor_x;
 	int				cursor_y;
+	int				r;
+	int				g;
+	int				b;
 }					t_fractol;
 
 /* main */
@@ -40,7 +43,7 @@ void		init_env(t_fractol *m);
 /* f_hooks */
 int			keyfunction(int key, t_fractol *m);
 int			cursorfunction(int x, int y, t_fractol *m);
-//int			mousefunction(int key, int x, int y, t_fractol *m);
+int			mousefunction(int key, int x, int y, t_fractol *m);
 
 /* f_sets*/
 void		*julia(void *thread);
