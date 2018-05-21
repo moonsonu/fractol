@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:30:33 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/20 18:39:58 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/21 11:54:09 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,14 @@ int		keyfunction(int key, t_fractol *m)
 	return (0);
 }
 
-/*int		mousefunction(int key, int x, int y, t_fractol *m);
+int		cursorfunction(int x, int y, t_fractol *m)
 {
-
-}*/
+	ft_bzero(m->data, WIN * WIN * 4);
+	if (m->cursor != 0)
+	{
+		m->cursor_x = x;
+		m->cursor_y = y;
+		f_multithrd(m);
+	}
+	return (0);
+}

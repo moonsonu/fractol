@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:32:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/20 18:40:46 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/21 11:54:11 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	*burningship(void *thread)
 			while ((zx * zx) + (zy * zy) < 4 && i < m->iter)
 			{
 				xtemp = zx * zx - zy * zy;
-				zy = fabs(2 * zx * zy) + y0;
-				zx = fabs(xtemp + x0);
+				zy = fabs(2 * zx * zy) + y0 * m->cursor_y;
+				zx = fabs(xtemp + x0) * m->cursor_x;
 				i++;
 			}
 			if (i < m->iter && i > 0)
@@ -70,8 +70,8 @@ void	*julia(void *thread)
 			while ((zx * zx) + (zy * zy) < 4 && i < m->iter)
 			{
 				xtemp = zx * zx - zy * zy;
-				zy = 2 * zx * zy + 0.662;
-				zx = xtemp + 0.282;
+				zy = 2 * zx * zy + 0.662 / ((double)m->cursor_y / WIN * 3);
+				zx = xtemp + 0.282 / ((double)m->cursor_x / WIN * 3);
 				i++;
 			}
 			if (i < m->iter && i > 0)

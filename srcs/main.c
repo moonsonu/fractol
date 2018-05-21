@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/20 18:42:17 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/21 11:54:12 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			main(int ac, char **av)
 	init_env(m);
 	f_multithrd(m);
 	mlx_hook(m->win_ptr, 2, 0, keyfunction, m);
+	mlx_hook(m->win_ptr, 6, 0, cursorfunction, m);
 	//mlx_mouse_hook(m->win_ptr, mousefunction, m);
 	mlx_loop(m->mlx_ptr);
 }
