@@ -30,6 +30,7 @@ typedef struct		s_fractol
 	int				r;
 	int				g;
 	int				b;
+	double			p;
 }					t_fractol;
 
 /* main */

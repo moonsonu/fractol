@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:30:33 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/21 15:21:23 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/21 21:52:04 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int		keyfunction(int key, t_fractol *m)
 	key == 19 ? m->fractal = "julia" : 0;
 	key == 20 ? m->fractal = "burningship" : 0;
 	key == 21 ? m->fractal = "phoenix" : 0;
+	key == 35 ? m->p *= 1.1 : 0;
+	key == 33 ? m->p /= 1.1 : 0;
 	f_multithrd(m);
 	return (0);
 }

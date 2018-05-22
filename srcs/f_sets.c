@@ -6,23 +6,59 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:32:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/21 19:08:34 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/21 21:52:06 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdlib.h>
+
+/*void	*barnsley(void *thread)
+{
+	t_fractol *m = (t_fractol *)thread;
+	double	x0 = 0;
+	double	y0 = 0;
+	double	x1;
+	double	y1;
+	int		d;
+	int		i;
+	int		x;
+	int		y;
+
+	while (m->iteri-- > 0)
+	{
+		d = ((float)rand()) / WIN;
+		if (d == 0)
+		{
+			x1 = 0;
+			y1 = 0.16 * y0;
+		}
+		else if (d >= 1 && d <= 7)
+		{
+			x1 = -0.15 * x0 + 0.28 * y0;
+			y1 = 0.23 * x0 + 0.22 * y0 + 1.6;
+		}
+		else
+		{
+			x1 = 0.85 * x0 + 0.04 * y0;
+			y1 = -0.04 * x0 + 0.85 * y0 + 1.6;
+		}
+	mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
+	}
+	return (NULL);
+}*/
 
 void	*phoenix(void *thread)
 {
-	t_fractol *m = (t_fractol *)thread;
-	double	zx;
-	double	zy;
-	double	xtemp;
-	int		x;
-	int		y;
-	int		i;
-	double	x0;
-	double	y0;
+	t_fractol	*m = (t_fractol *)thread;
+	double		zx;
+	double		zy;
+	double		xtemp;
+	int			x;
+	int			y;
+	int			i;
+	double		x0;
+	double		y0;
 
 	y = -1;
 	while (++y < WIN)
@@ -37,9 +73,9 @@ void	*phoenix(void *thread)
 			i = 0;
 			while ((zx * zx) + (zy * zy) < 4 && i < m->iter)
 			{
-				xtemp = zx * zx - zy * zy - 0.5 * x0;
-				zy = 2 * fabs(zx * zy) - 0.5 * y0 * ((double)m->cursor_y / WIN * 3);
-				zx = xtemp + 0.56667 * ((double)m->cursor_x / WIN * 3);
+				xtemp = zx * zx - zy * zy - m->p * x0;
+				zy = 2 * fabs(zx * zy) - m->p * y0;
+				zx = xtemp + 0.56667;
 				x0 = zx;
 				y0 = zy;
 				i++;
@@ -49,20 +85,19 @@ void	*phoenix(void *thread)
 		}
 	}
 	return (NULL);
-	//mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
 }
 
 void	*burningship(void *thread)
 {
-	t_fractol *m = (t_fractol *)thread;
-	double	zx;
-	double	zy;
-	double	xtemp;
-	int		x;
-	int		y;
-	int		i;
-	double	x0;
-	double	y0;
+	t_fractol	*m = (t_fractol *)thread;
+	double		zx;
+	double		zy;
+	double		xtemp;
+	int			x;
+	int			y;
+	int			i;
+	double		x0;
+	double		y0;
 
 	y = -1;
 	while (++y < WIN)
@@ -88,6 +123,7 @@ void	*burningship(void *thread)
 	}
 	return (NULL);
 }
+
 void	*julia(void *thread)
 {
 	t_fractol *m = (t_fractol *)thread;
@@ -119,7 +155,6 @@ void	*julia(void *thread)
 		}
 	}
 	return (NULL);
-	//mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
 }
 
 void	*mandelbrot(void *thread)
@@ -157,42 +192,4 @@ void	*mandelbrot(void *thread)
 		}
 	}
 	return (NULL);
-}
-
-void	f_multithrd(t_fractol *m)
-{
-	int			i;
-	pthread_t	t[4];
-	t_fractol	thread[4];
-
-	i = -1;
-	while (++i < 4 && (ft_memcpy((void*)&thread[i], m, sizeof(t_fractol))))
-	{
-		thread[i].start = i * (WIN / 4);
-		thread[i].end = (i + 1) * (WIN / 4);
-	}
-	i = -1;
-	while (++i < 4)
-	{
-		if (!ft_strcmp(m->fractal, "Mandelbrot") || !ft_strcmp(m->fractal, "mandelbrot"))
-			pthread_create(&t[i], NULL, mandelbrot, &thread[i]);
-		if (!ft_strcmp(m->fractal, "Julia") || !ft_strcmp(m->fractal, "julia"))
-		{
-			m->cursor = 1;
-			pthread_create(&t[i], NULL, julia, &thread[i]);
-		}
-		if (!ft_strcmp(m->fractal, "Burningship") || !ft_strcmp(m->fractal, "burningship"))
-		{
-			m->cursor = 1;
-			pthread_create(&t[i], NULL, burningship, &thread[i]);
-		}
-		if (!ft_strcmp(m->fractal, "Phoenix") || !ft_strcmp(m->fractal, "phoenix"))
-		{
-			m->cursor = 1;
-			pthread_create(&t[i], NULL, phoenix, &thread[i]);
-		}
-	}
-	while (--i >= 0)
-		pthread_join(t[i], NULL);
-	mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
 }
