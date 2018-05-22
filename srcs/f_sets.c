@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:32:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/21 15:21:25 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/21 19:08:34 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ void	*phoenix(void *thread)
 		{
 			zx = 1.5 * (x - (WIN / 2)) / (WIN * 0.2 * m->zoom) + m->x_move;
 			zy = (y - WIN / 2) / (WIN * 0.2 * m->zoom) + m->y_move;
-			x0 = zx;
-			y0 = zy;
+			x0 = 0;
+			y0 = 0;
 			i = 0;
 			while ((zx * zx) + (zy * zy) < 4 && i < m->iter)
 			{
-				xtemp = zx * zx - zy * zy - (0.5 * zx) - (0.5 * x0);
-				zy = 2 * zx * zy - (0.5 * zy) - (0.5 * y0) * ((double)m->cursor_y / WIN * 3);
-				zx = xtemp + 0.5667 * ((double)m->cursor_x / WIN * 3);
+				xtemp = zx * zx - zy * zy - 0.5 * x0;
+				zy = 2 * fabs(zx * zy) - 0.5 * y0 * ((double)m->cursor_y / WIN * 3);
+				zx = xtemp + 0.56667 * ((double)m->cursor_x / WIN * 3);
+				x0 = zx;
+				y0 = zy;
 				i++;
 			}
 			if (i < m->iter && i > 0)

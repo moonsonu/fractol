@@ -1,0 +1,5 @@
+.*/
+*.o
+fractol
+*.a
+!.gitignore
