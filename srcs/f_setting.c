@@ -6,11 +6,12 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:34:24 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/21 21:52:02 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/22 10:31:55 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 void	f_multithrd(t_fractol *m)
 {
@@ -27,28 +28,25 @@ void	f_multithrd(t_fractol *m)
 	i = -1;
 	while (++i < 4)
 	{
-		if (!ft_strcmp(m->fractal, "Mandelbrot") ||
-				!ft_strcmp(m->fractal, "mandelbrot"))
+		if (!ft_strcmp(m->fractal, "mandelbrot"))
 			pthread_create(&t[i], NULL, mandelbrot, &thread[i]);
-		if (!ft_strcmp(m->fractal, "Julia") ||
-				!ft_strcmp(m->fractal, "julia"))
+		if (!ft_strcmp(m->fractal, "julia"))
 		{
 			m->cursor = 1;
 			pthread_create(&t[i], NULL, julia, &thread[i]);
 		}
-		if (!ft_strcmp(m->fractal, "Burningship") ||
-				!ft_strcmp(m->fractal, "burningship"))
+		if (!ft_strcmp(m->fractal, "burningship"))
 		{
 			m->cursor = 1;
 			pthread_create(&t[i], NULL, burningship, &thread[i]);
 		}
-		if (!ft_strcmp(m->fractal, "Phoenix") || !ft_strcmp(m->fractal, "phoenix"))
+		if (!ft_strcmp(m->fractal, "phoenix"))
 		{
 			m->cursor = 1;
 			pthread_create(&t[i], NULL, phoenix, &thread[i]);
 		}
 		/*if (!ft_strcmp(m->fractal, "Barnsley") || !ft_strcmp(m->fractal, "barnsley"))
-			pthread_create(&t[i], NULL, barnsley, &thread[i]);*/
+		  pthread_create(&t[i], NULL, barnsley, &thread[i]);*/
 	}
 	while (--i >= 0)
 		pthread_join(t[i], NULL);
@@ -84,4 +82,19 @@ void		init_env(t_fractol *m)
 	m->g = 255;
 	m->b = 255;
 	m->p = 0.5;
+}
+
+int			init_fractal(t_fractol *m, char *av)
+{
+	if (!ft_strcmp(av, "Mandelbrot") || !ft_strcmp(av, "mandelbrot"))
+		m->fractal = "mandelbrot";
+	else if (!ft_strcmp(av, "Julia") || ft_strcmp(av, "julia"))
+		m->fractal = "julia";
+	else if (!ft_strcmp(av, "Burningship") || !ft_strcmp(av, "burningship"))
+		m->fractal = "burningship";
+	else if (!ft_strcmp(av, "Phoenix") || !ft_strcmp(av, "phoenix"))
+		m->fractal = "phoenix";
+	else
+		return (0);
+	return (1);
 }

@@ -40,6 +40,7 @@ void		error_message(void);
 void		f_color(t_fractol *m, int x, int y, int n);
 void		init_mlx(t_fractol *m);
 void		init_env(t_fractol *m);
+int			init_fractal(t_fractol *m, char *av);
 
 /* f_hooks */
 int			keyfunction(int key, t_fractol *m);
@@ -47,6 +48,8 @@ int			cursorfunction(int x, int y, t_fractol *m);
 int			mousefunction(int key, int x, int y, t_fractol *m);
 
 /* f_sets*/
+void		*phoenix(void *thread);
+void		*burningship(void *thread);
 void		*julia(void *thread);
 void		*mandelbrot(void *thread);
 void		f_multithrd(t_fractol *m);
