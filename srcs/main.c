@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/22 11:06:12 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/22 15:34:39 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			main(int ac, char **av)
 	m = (t_fractol*)malloc(sizeof(t_fractol));
 	if ((ac != 2 && ac != 3) || !init_fractal(m, av[1]))
 		error_message();
-	/*if (ac == 3)
+	if (ac == 3)
 	{
 		if (!fork())
 			main(2, av);
@@ -39,7 +39,7 @@ int			main(int ac, char **av)
 			av[1] = av[2];
 			main(2, av);
 		}
-	}*/
+	}
 	init_mlx(m);
 	init_env(m);
 	f_multithrd(m);

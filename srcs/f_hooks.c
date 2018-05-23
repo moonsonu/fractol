@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:30:33 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/21 21:52:04 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/22 17:16:18 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int		keyfunction(int key, t_fractol *m)
 	key == 19 ? m->fractal = "julia" : 0;
 	key == 20 ? m->fractal = "burningship" : 0;
 	key == 21 ? m->fractal = "phoenix" : 0;
-	key == 35 ? m->p *= 1.1 : 0;
-	key == 33 ? m->p /= 1.1 : 0;
+	key == 22 ? m->fractal = "newton" : 0;
 	f_multithrd(m);
 	return (0);
 }
@@ -46,8 +45,11 @@ int		cursorfunction(int x, int y, t_fractol *m)
 	ft_bzero(m->data, WIN * WIN * 4);
 	if (m->cursor != 0)
 	{
-		m->cursor_x = x;
-		m->cursor_y = y;
+		if (x <= WIN && y <= WIN && x >= 0 && y >= 0)
+		{
+			m->cursor_x = x;
+			m->cursor_y = y;
+		}
 		f_multithrd(m);
 	}
 	return (0);
@@ -55,11 +57,25 @@ int		cursorfunction(int x, int y, t_fractol *m)
 
 int		mousefunction(int button, int x, int y, t_fractol *m)
 {
-	(void)x;
-	(void)y;
 	ft_bzero(m->data, WIN * WIN * 4);
-	button == 4 && m->zoom / 1.1 > 0 ? m->zoom /= 1.1 : 0;
-	button == 5 ? m->zoom *= 1.1 : 0;
+	if (button == 4 || button == 5)
+	{
+		if (button == 4)
+		{
+			m->offset_x += ((2 * x - WIN) / (WIN / 2)) / m->zoom / 9.5;
+			m->offset_y += ((2 * y - WIN) / (WIN / 2)) / m->zoom / 9.5;
+			m->zoom /= 0.9;
+		}
+		if (button == 5)
+		{
+			m->offset_x += ((2 * x - WIN) / (WIN / 2)) / m->zoom / 9.5;
+			m->offset_y += ((2 * y - WIN) / (WIN / 2)) / m->zoom / 9.5;
+			m->zoom *= 0.9;
+		}
+	}
+	if (button == 1)
+		m->offset_x += ((2 * x - WIN) / (WIN / 2)) / m->zoom;
+	m->offset_y += ((2 * y - WIN) / (WIN / 2)) / m->zoom;
 	f_multithrd(m);
 	return (0);
 }

@@ -6,14 +6,16 @@
 #    By: ksonu <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/16 21:19:01 by ksonu             #+#    #+#              #
-#    Updated: 2018/05/20 18:41:29 by ksonu            ###   ########.fr        #
+#    Updated: 2018/05/22 18:00:32 by ksonu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = main.c		\
 	  f_hooks.c		\
 	  f_sets.c		\
-	  f_setting.c
+	  f_sets_2.c	\
+	  f_setting.c	\
+	  f_color.c
 OBJ = $(SRC:.c=.o)
 MLX = -L $(MLXDIR) -lmlx -framework OpenGL -framework Appkit
 

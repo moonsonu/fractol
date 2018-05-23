@@ -14,7 +14,7 @@ typedef struct		s_fractol
 	void			*win_ptr;
 	char			*data;
 	void			*image;
-	char			*fractal;
+	int				fractal;
 	int				bpp;
 	int				size;
 	int				endian;
@@ -30,28 +30,48 @@ typedef struct		s_fractol
 	int				r;
 	int				g;
 	int				b;
-	double			p;
+	double			offset_x;
+	double			offset_y;
 }					t_fractol;
+
+typedef struct		s_set;
+{
+	double			zx;
+	double			zy;
+	double			tmp;
+	double			x0;
+	double			y0;
+	int				x;
+	int				y;
+	int				i;
+}					t_set;
 
 /* main */
 void		error_message(void);
+int			main(int ac, char **av);
 
 /* f_setting */
-void		f_color(t_fractol *m, int x, int y, int n);
+void		f_multithrd(t_fractol *m);
+void		f_mlx_message(t_fractol *m);
 void		init_mlx(t_fractol *m);
 void		init_env(t_fractol *m);
 int			init_fractal(t_fractol *m, char *av);
+
+/* f_color */
+void		f_color(t_fractol *m, int x, int y, int n);
 
 /* f_hooks */
 int			keyfunction(int key, t_fractol *m);
 int			cursorfunction(int x, int y, t_fractol *m);
 int			mousefunction(int key, int x, int y, t_fractol *m);
 
-/* f_sets*/
+/* f_sets */
+void		*newton(void *thread);
 void		*phoenix(void *thread);
 void		*burningship(void *thread);
 void		*julia(void *thread);
 void		*mandelbrot(void *thread);
-void		f_multithrd(t_fractol *m);
 
+/* f_setset */
+void		f_setset(t_set *s, t_fractal *m);
 #endif
