@@ -81,4 +81,6 @@ void		f_setset(t_set *s, t_fractol *m);
 void		f_new_iter(t_set *s, t_fractol *m);
 void		f_pho_iter(t_set *s, t_fractol *m);
 void		f_bur_iter(t_set *s, t_fractol *m);
+void		f_man_iter(t_set *s, t_fractol *m);
+
 #endif

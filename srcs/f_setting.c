@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:34:24 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/24 14:47:16 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/24 16:16:10 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,10 @@ void		f_multithrd(t_fractol *m)
 	while (++i < 4)
 	{
 		m->fractal == 1 ? pthread_create(&t[i], NULL, man, &thread[i]) : 0;
-		if (m->fractal == 2)
-		{
-			m->cursor = 1;
-			pthread_create(&t[i], NULL, jul, &thread[i]);
-		}
-		if (m->fractal == 3)
-		{
-			m->cursor = 1;
-			pthread_create(&t[i], NULL, bur, &thread[i]);
-		}
+		m->fractal == 2 ? m->cursor = 1 : 0;
+		m->fractal == 2 ? pthread_create(&t[i], NULL, jul, &thread[i]) : 0;
+		m->fractal == 3 ? m->cursor = 1 : 0;
+		m->fractal == 3 ? pthread_create(&t[i], NULL, bur, &thread[i]) : 0;
 		m->fractal == 4 ? pthread_create(&t[i], NULL, pho, &thread[i]) : 0;
 		m->fractal == 5 ? pthread_create(&t[i], NULL, newt, &thread[i]) : 0;
 	}

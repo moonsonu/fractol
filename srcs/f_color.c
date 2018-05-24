@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:16:38 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/24 14:42:15 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/24 16:16:19 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void		f_color(t_fractol *m, int x, int y, int n)
 	m->color == 0 ? c = m->r : 0;
 	m->color == 1 ? c = m->g : 0;
 	m->color == 2 ? c = m->b : 0;
-	//m->data[i] = ft_rgb(255, 133, 170);
 	m->data[++i] = n * c * 255;
 	m->data[++i] = ft_rgb(m->r, m->g, m->b);
-	//m->data[++i] = ft_rgb(m->r + n, m->g + n, m->b + n);
 }

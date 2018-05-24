@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:32:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/24 14:37:36 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/24 16:13:06 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	*newt(void *thread)
 				f_color(m, s->x, s->y, 1000 * s->i);
 		}
 	}
+	free(s);
 	return (NULL);
 }
 
@@ -55,6 +56,7 @@ void	*pho(void *thread)
 				f_color(m, s->x, s->y, 1000 * s->i);
 		}
 	}
+	free(s);
 	return (NULL);
 }
 
@@ -79,6 +81,7 @@ void	*bur(void *thread)
 				f_color(m, s->x, s->y, 1000 * s->i);
 		}
 	}
+	free(s);
 	return (NULL);
 }
 
@@ -107,6 +110,7 @@ void	*jul(void *thread)
 				f_color(m, s->x, s->y, 1000 * s->i);
 		}
 	}
+	free(s);
 	return (NULL);
 }
 
@@ -125,16 +129,11 @@ void	*man(void *thread)
 			f_setset(s, m);
 			s->x0 = s->zx;
 			s->y0 = s->zy;
-			while ((s->zx * s->zx) + (s->zy * s->zy) < 4 && s->i < m->iter)
-			{
-				s->tmp = s->zx * s->zx - s->zy * s->zy;
-				s->zy = 2 * s->zx * s->zy + s->y0;
-				s->zx = s->tmp + s->x0;
-				(s->i)++;
-			}
+			f_man_iter(s, m);
 			if (s->i < m->iter && s->i > 0)
 				f_color(m, s->x, s->y, 1000 * s->i);
 		}
 	}
+	free(s);
 	return (NULL);
 }

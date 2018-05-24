@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:56:21 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 23:20:39 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/24 16:13:18 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		f_setset(t_set *s, t_fractol *m)
 	if (m->fractal == 1 || m->fractal == 3)
 	{
 		s->zx = (s->x - (WIN / 2)) / (WIN * 0.2 * m->zoom) + m->x_move +
-		m->offset_x;
+			m->offset_x;
 		s->zy = (s->y - WIN / 2) / (WIN * 0.2 * m->zoom) + m->y_move +
 			m->offset_y;
 		s->i = 0;
@@ -70,6 +70,17 @@ void		f_bur_iter(t_set *s, t_fractol *m)
 		s->zy = fabs(2 * s->zx * s->zy) + s->y0 *
 			((double)m->cursor_y / WIN * 2);
 		s->zx = fabs(s->tmp + s->x0) * ((double)m->cursor_x / WIN * 2);
+		(s->i)++;
+	}
+}
+
+void		f_man_iter(t_set *s, t_fractol *m)
+{
+	while ((s->zx * s->zx) + (s->zy * s->zy) < 4 && s->i < m->iter)
+	{
+		s->tmp = s->zx * s->zx - s->zy * s->zy;
+		s->zy = 2 * s->zx * s->zy + s->y0;
+		s->zx = s->tmp + s->x0;
 		(s->i)++;
 	}
 }
