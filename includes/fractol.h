@@ -49,12 +49,13 @@ typedef struct		s_set
 }					t_set;
 
 /* main */
+void		f_mlx_message(t_fractol *m);
 void		error_message(void);
 int			main(int ac, char **av);
 
 /* f_setting */
+void		f_multithrd_set(t_fractol *thread, t_fractol *m);
 void		f_multithrd(t_fractol *m);
-void		f_mlx_message(t_fractol *m);
 void		init_mlx(t_fractol *m);
 void		init_env(t_fractol *m);
 int			init_fractal(t_fractol *m, char *av);

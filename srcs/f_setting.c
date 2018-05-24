@@ -6,11 +6,23 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:34:24 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 21:41:37 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/24 14:47:16 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void		f_multithrd_set(t_fractol *thread, t_fractol *m)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 4 && (ft_memcpy(&thread[i], m, sizeof(t_fractol))))
+	{
+		thread[i].start = i * (WIN / 4);
+		thread[i].end = (i + 1) * (WIN / 4);
+	}
+}
 
 void		f_multithrd(t_fractol *m)
 {
@@ -18,18 +30,21 @@ void		f_multithrd(t_fractol *m)
 	pthread_t	t[4];
 	t_fractol	thread[4];
 
-	i = -1;
-	while (++i < 4 && (ft_memcpy((void*)&thread[i], m, sizeof(t_fractol))))
-	{
-		thread[i].start = i * (WIN / 4);
-		thread[i].end = (i + 1) * (WIN / 4);
-	}
+	f_multithrd_set(thread, m);
 	i = -1;
 	while (++i < 4)
 	{
 		m->fractal == 1 ? pthread_create(&t[i], NULL, man, &thread[i]) : 0;
-		m->fractal == 2 ? pthread_create(&t[i], NULL, jul, &thread[i]) : 0;
-		m->fractal == 3 ? pthread_create(&t[i], NULL, bur, &thread[i]) : 0;
+		if (m->fractal == 2)
+		{
+			m->cursor = 1;
+			pthread_create(&t[i], NULL, jul, &thread[i]);
+		}
+		if (m->fractal == 3)
+		{
+			m->cursor = 1;
+			pthread_create(&t[i], NULL, bur, &thread[i]);
+		}
 		m->fractal == 4 ? pthread_create(&t[i], NULL, pho, &thread[i]) : 0;
 		m->fractal == 5 ? pthread_create(&t[i], NULL, newt, &thread[i]) : 0;
 	}
@@ -37,30 +52,6 @@ void		f_multithrd(t_fractol *m)
 		pthread_join(t[i], NULL);
 	mlx_put_image_to_window(m->mlx_ptr, m->win_ptr, m->image, 0, 0);
 	f_mlx_message(m);
-}
-
-void		f_mlx_message(t_fractol *m)
-{
-	if (m->message == 0)
-	{
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 5, 0xFFFFFF, "RESET : [R]");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 25, 0xFFFFFF,
-				"ZOOM : [+]/[-]");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 45, 0xFFFFFF,
-				"MOVE : [ARROWS]");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 65, 0xFFFFFF,
-				"ITERATION : [I]/[O]");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 85, 0xFFFFFF, "FRACTAL SETS");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 105, 0xFFFFFF,
-				"[1] :Mandelbrot");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 125, 0xFFFFFF, "[2] : Julia");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 145, 0xFFFFFF,
-				"[3] : Burningship");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 165, 0xFFFFFF,
-				"[4] : Phoenix");
-		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 185, 0xFFFFFF,
-				"[5] : Newton");
-	}
 }
 
 void		init_mlx(t_fractol *m)
@@ -77,7 +68,7 @@ void		init_env(t_fractol *m)
 	m->y_move = 0;
 	m->iter = 50;
 	m->zoom = 1;
-	m->cursor = 1;
+	m->cursor = 0;
 	m->r = 100;
 	m->g = 2;
 	m->b = 255;

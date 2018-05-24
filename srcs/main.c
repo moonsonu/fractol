@@ -6,12 +6,36 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 16:29:25 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/24 14:47:19 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdio.h>
+
+void		f_mlx_message(t_fractol *m)
+{
+	if (m->message == 0)
+	{
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 5, 0xFFFFFF, "RESET : [R]");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 25, 0xFFFFFF,
+				"ZOOM : [+]/[-]");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 45, 0xFFFFFF,
+				"MOVE : [ARROWS]");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 65, 0xFFFFFF,
+				"ITERATION : [I]/[O]");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 85, 0xFFFFFF, "FRACTAL SETS");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 105, 0xFFFFFF,
+				"[1] :Mandelbrot");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 125, 0xFFFFFF, "[2] : Julia");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 145, 0xFFFFFF,
+				"[3] : Burningship");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 165, 0xFFFFFF,
+				"[4] : Phoenix");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 185, 0xFFFFFF,
+				"[5] : Newton");
+	}
+}
 
 void		error_message(void)
 {

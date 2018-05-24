@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:16:38 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 21:48:35 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/24 14:42:15 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int			key_color(int key, t_fractol *m)
 	}
 	if (key == 11)
 	{
-		m->r = 2;
-		m->g = 3;
-		m->b = 255;
+		m->r = 5;
+		m->g = 2;
+		m->b = 150;
 	}
 	return (0);
 }
@@ -42,7 +42,7 @@ void		f_color(t_fractol *m, int x, int y, int n)
 	m->color == 1 ? c = m->g : 0;
 	m->color == 2 ? c = m->b : 0;
 	//m->data[i] = ft_rgb(255, 133, 170);
-	m->data[++i] = n * c;
+	m->data[++i] = n * c * 255;
 	m->data[++i] = ft_rgb(m->r, m->g, m->b);
 	//m->data[++i] = ft_rgb(m->r + n, m->g + n, m->b + n);
 }
