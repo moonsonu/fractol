@@ -32,9 +32,10 @@ typedef struct		s_fractol
 	int				b;
 	double			offset_x;
 	double			offset_y;
+	int				message;
 }					t_fractol;
 
-typedef struct		s_set;
+typedef struct		s_set
 {
 	double			zx;
 	double			zy;
@@ -66,12 +67,15 @@ int			cursorfunction(int x, int y, t_fractol *m);
 int			mousefunction(int key, int x, int y, t_fractol *m);
 
 /* f_sets */
-void		*newton(void *thread);
-void		*phoenix(void *thread);
-void		*burningship(void *thread);
-void		*julia(void *thread);
-void		*mandelbrot(void *thread);
+void		*newt(void *thread);
+void		*pho(void *thread);
+void		*bur(void *thread);
+void		*jul(void *thread);
+void		*man(void *thread);
 
 /* f_setset */
-void		f_setset(t_set *s, t_fractal *m);
+void		f_setset(t_set *s, t_fractol *m);
+void		f_new_iter(t_set *s, t_fractol *m);
+void		f_pho_iter(t_set *s, t_fractol *m);
+void		f_bur_iter(t_set *s, t_fractol *m);
 #endif

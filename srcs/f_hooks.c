@@ -6,12 +6,34 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:30:33 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/22 17:16:18 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/23 17:51:27 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
+
+int		key_set(int key, t_fractol *m)
+{
+	key == 18 ? m->fractal = 1 : 0;
+	key == 19 ? m->fractal = 2 : 0;
+	key == 20 ? m->fractal = 3 : 0;
+	key == 21 ? m->fractal = 4 : 0;
+	key == 23 ? m->fractal = 5 : 0;
+	init_env(m);
+	return (0);
+}
+
+int		key_message(int key, t_fractol *m)
+{
+	if (key == 49)
+	{
+		if (m->message == 1)
+			m->message = 0;
+		else
+			m->message = 1;
+	}
+	return (0);
+}
 
 int		keyfunction(int key, t_fractol *m)
 {
@@ -31,11 +53,10 @@ int		keyfunction(int key, t_fractol *m)
 	key == 124 ? m->x_move -= 0.3 : 0;
 	key == 125 ? m->y_move -= 0.3 : 0;
 	key == 126 ? m->y_move += 0.3 : 0;
-	key == 18 ? m->fractal = "mandelbrot" : 0;
-	key == 19 ? m->fractal = "julia" : 0;
-	key == 20 ? m->fractal = "burningship" : 0;
-	key == 21 ? m->fractal = "phoenix" : 0;
-	key == 22 ? m->fractal = "newton" : 0;
+	if ((key >= 18 && key <= 21) || key == 23)
+		key_set(key, m);
+	if (key == 49)
+		key_message(key, m);
 	f_multithrd(m);
 	return (0);
 }
@@ -62,20 +83,22 @@ int		mousefunction(int button, int x, int y, t_fractol *m)
 	{
 		if (button == 4)
 		{
-			m->offset_x += ((2 * x - WIN) / (WIN / 2)) / m->zoom / 9.5;
-			m->offset_y += ((2 * y - WIN) / (WIN / 2)) / m->zoom / 9.5;
+			m->offset_x += (((2 * x - WIN) / (WIN / 4)) / m->zoom) / 5.5;
+			m->offset_y += (((2 * y - WIN) / (WIN / 4)) / m->zoom) / 5.5;
 			m->zoom /= 0.9;
 		}
-		if (button == 5)
+		else if (button == 5)
 		{
-			m->offset_x += ((2 * x - WIN) / (WIN / 2)) / m->zoom / 9.5;
-			m->offset_y += ((2 * y - WIN) / (WIN / 2)) / m->zoom / 9.5;
+			m->offset_x -= (((2 * x - WIN) / (WIN / 4)) / m->zoom) / 5.5;
+			m->offset_y -= (((2 * y - WIN) / (WIN / 4)) / m->zoom) / 5.5;
 			m->zoom *= 0.9;
 		}
 	}
 	if (button == 1)
-		m->offset_x += ((2 * x - WIN) / (WIN / 2)) / m->zoom;
-	m->offset_y += ((2 * y - WIN) / (WIN / 2)) / m->zoom;
+	{
+		m->offset_x += ((2 * x - WIN) / (WIN / 4)) / m->zoom;
+		m->offset_y += ((2 * y - WIN) / (WIN / 4)) / m->zoom;
+	}
 	f_multithrd(m);
 	return (0);
 }
