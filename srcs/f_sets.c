@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:32:26 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 18:30:06 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/23 21:48:31 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*newt(void *thread)
 
 	SETS;
 	s = ft_memalloc(sizeof(t_set));
-	s->y = -1;
-	while (++(s->y) < WIN)
+	s->y = m->start - 1;
+	while (++(s->y) < m->end)
 	{
 		s->x = -1;
 		while (++(s->x) < WIN)
@@ -41,8 +41,8 @@ void	*pho(void *thread)
 
 	SETS;
 	s = ft_memalloc(sizeof(t_set));
-	s->y = -1;
-	while (++(s->y) < WIN)
+	s->y = m->start - 1;
+	while (++(s->y) < m->end)
 	{
 		s->x = -1;
 		while (++(s->x) < WIN)
@@ -64,8 +64,8 @@ void	*bur(void *thread)
 
 	SETS;
 	s = ft_memalloc(sizeof(t_set));
-	s->y = -1;
-	while (++(s->y) < WIN)
+	s->y = m->start - 1;
+	while (++(s->y) < m->end)
 	{
 		s->x = -1;
 		while (++(s->x) < WIN)
@@ -88,8 +88,8 @@ void	*jul(void *thread)
 
 	SETS;
 	s = ft_memalloc(sizeof(t_set));
-	s->y = -1;
-	while (++(s->y) < WIN)
+	s->y = m->start - 1;
+	while (++(s->y) < m->end)
 	{
 		s->x = -1;
 		while (++(s->x) < WIN)
@@ -116,8 +116,8 @@ void	*man(void *thread)
 
 	SETS;
 	s = ft_memalloc(sizeof(t_set));
-	s->y = -1;
-	while (++(s->y) < WIN)
+	s->y = m->start - 1;
+	while (++(s->y) < m->end)
 	{
 		s->x = -1;
 		while (++(s->x) < WIN)

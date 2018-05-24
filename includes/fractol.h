@@ -33,6 +33,7 @@ typedef struct		s_fractol
 	double			offset_x;
 	double			offset_y;
 	int				message;
+	int				color;
 }					t_fractol;
 
 typedef struct		s_set
@@ -60,6 +61,7 @@ int			init_fractal(t_fractol *m, char *av);
 
 /* f_color */
 void		f_color(t_fractol *m, int x, int y, int n);
+int			key_color(int key, t_fractol *m);
 
 /* f_hooks */
 int			keyfunction(int key, t_fractol *m);

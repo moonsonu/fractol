@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:34:24 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 18:09:11 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/23 21:41:37 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,13 @@ void		init_env(t_fractol *m)
 	m->iter = 50;
 	m->zoom = 1;
 	m->cursor = 1;
-	m->r = 255;
-	m->g = 255;
+	m->r = 100;
+	m->g = 2;
 	m->b = 255;
 	m->offset_x = 0;
 	m->offset_y = 0;
 	m->message = 0;
+	m->color = 0;
 }
 
 int			init_fractal(t_fractol *m, char *av)

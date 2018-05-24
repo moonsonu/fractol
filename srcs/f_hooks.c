@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:30:33 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 17:51:27 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/23 21:13:49 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int		keyfunction(int key, t_fractol *m)
 	key == 124 ? m->x_move -= 0.3 : 0;
 	key == 125 ? m->y_move -= 0.3 : 0;
 	key == 126 ? m->y_move += 0.3 : 0;
+	if ((key >= 6 && key <= 8) || key == 5 || key == 11)
+		key_color(key, m);
 	if ((key >= 18 && key <= 21) || key == 23)
 		key_set(key, m);
 	if (key == 49)

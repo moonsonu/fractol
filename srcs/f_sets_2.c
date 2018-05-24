@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:56:21 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/23 18:31:04 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/23 21:48:33 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,22 @@
 
 void		f_setset(t_set *s, t_fractol *m)
 {
-	s->zx = 1.5 * (s->x - (WIN / 2)) / (WIN * 0.2 * m->zoom) + m->x_move +
+	if (m->fractal == 1 || m->fractal == 3)
+	{
+		s->zx = (s->x - (WIN / 2)) / (WIN * 0.2 * m->zoom) + m->x_move +
 		m->offset_x;
-	s->zy = (s->y - WIN / 2) / (WIN * 0.2 * m->zoom) + m->y_move +
-		m->offset_y;
-	s->i = 0;
+		s->zy = (s->y - WIN / 2) / (WIN * 0.2 * m->zoom) + m->y_move +
+			m->offset_y;
+		s->i = 0;
+	}
+	else
+	{
+		s->zx = 1.5 * (s->x - (WIN / 2)) / (WIN * 0.2 * m->zoom) + m->x_move +
+			m->offset_x;
+		s->zy = (s->y - WIN / 2) / (WIN * 0.2 * m->zoom) + m->y_move +
+			m->offset_y;
+		s->i = 0;
+	}
 }
 
 void		f_new_iter(t_set *s, t_fractol *m)
