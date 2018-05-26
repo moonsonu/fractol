@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:34:24 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/24 16:16:10 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/25 18:34:38 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void		init_mlx(t_fractol *m)
 	m->mlx_ptr = mlx_init();
 	m->win_ptr = mlx_new_window(m->mlx_ptr, WIN, WIN, "FRACT'OL by KSONU");
 	m->image = mlx_new_image(m->mlx_ptr, WIN, WIN);
-	m->data = mlx_get_data_addr(m->image, &m->bpp, &m->size, &m->endian);
+	m->data = (int*)mlx_get_data_addr(m->image, &m->bpp, &m->size, &m->endian);
 }
 
 void		init_env(t_fractol *m)
@@ -63,9 +63,9 @@ void		init_env(t_fractol *m)
 	m->iter = 50;
 	m->zoom = 1;
 	m->cursor = 0;
-	m->r = 100;
-	m->g = 2;
-	m->b = 255;
+	m->r = 255;
+	m->g = 100;
+	m->b = 25;
 	m->offset_x = 0;
 	m->offset_y = 0;
 	m->message = 0;

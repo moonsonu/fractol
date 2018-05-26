@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/24 16:10:49 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/25 17:39:47 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		error_message(void)
 	ft_putendl("		Julia");
 	ft_putendl("		Burningship");
 	ft_putendl("		Phoenix");
+	ft_putendl("		Newton");
 	exit(0);
 }
 
@@ -71,4 +72,5 @@ int			main(int ac, char **av)
 	mlx_hook(m->win_ptr, 6, 0, cursorfunction, m);
 	mlx_mouse_hook(m->win_ptr, mousefunction, m);
 	mlx_loop(m->mlx_ptr);
+	return (0);
 }

@@ -12,7 +12,7 @@ typedef struct		s_fractol
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	char			*data;
+	int				*data;
 	void			*image;
 	int				fractal;
 	int				bpp;
