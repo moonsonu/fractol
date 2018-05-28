@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/27 20:25:59 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/28 13:56:11 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ int			main(int ac, char **av)
 			av[1] = av[2];
 			if (init_fractal(m, av[1]) == 1)
 				win_set(m);
+			else
+				error_message();
 		}
 	}
 	win_set(m);
