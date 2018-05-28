@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 16:30:33 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/27 17:36:47 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/27 20:26:01 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ int		mousefunction(int button, int x, int y, t_fractol *m)
 	}
 	if (button == 1)
 	{
-		m->offset_x += ((2 * x - WIN) / (WIN / 4)) / m->zoom;
-		m->offset_y += ((2 * y - WIN) / (WIN / 4)) / m->zoom;
+		m->offset_x += (((2 * x - WIN) / (WIN / 4)) / m->zoom) / 1.5;
+		m->offset_y += (((2 * y - WIN) / (WIN / 4)) / m->zoom) / 1.5;
 	}
 	f_multithrd(m);
 	return (0);

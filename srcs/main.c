@@ -6,12 +6,12 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/27 18:27:15 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/27 20:25:59 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
+
 void		help_message(void)
 {
 	ft_putendl("\n'*.'*.'*.'*.KEYBOARD.*'.*'.*'.*'");
@@ -29,10 +29,10 @@ void		help_message(void)
 	ft_putendl("		[Z]/[X]/[C]");
 	ft_putendl("HIDE HELP : [SPACE BAR]");
 	ft_putendl("\n.'*.'*.'*.'*.'MOUSE'.*'.*'.*'.*'");
-	ft_putendl("\n[LEFT CLICK] : bring the posision to");
+	ft_putendl("\n[LEFT CLICK] : bring the position to");
 	ft_putendl("	       the center");
 	ft_putendl("[WHEEL UP/DOWN] : zoom in/out follows");
-	ft_putendl("		  the cursor position");
+	ft_putendl("		  the cursor position\n");
 }
 
 void		f_mlx_message(t_fractol *m)
