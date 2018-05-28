@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/27 17:38:13 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/27 17:41:54 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/27 18:27:13 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct		s_set
 void				help_message(void);
 void				f_mlx_message(t_fractol *m);
 void				error_message(void);
+void				win_set(t_fractol *m);
 int					main(int ac, char **av);
 
 /*

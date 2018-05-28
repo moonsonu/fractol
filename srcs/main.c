@@ -6,12 +6,12 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/27 17:10:40 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/27 18:27:15 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
+#include <stdio.h>
 void		help_message(void)
 {
 	ft_putendl("\n'*.'*.'*.'*.KEYBOARD.*'.*'.*'.*'");
@@ -74,24 +74,8 @@ void		error_message(void)
 	exit(0);
 }
 
-int			main(int ac, char **av)
+void		win_set(t_fractol *m)
 {
-	t_fractol	*m;
-
-	m = (t_fractol*)malloc(sizeof(t_fractol));
-	if ((ac != 2 && ac != 3) || !init_fractal(m, av[1]))
-		error_message();
-	if (ac == 3)
-	{
-		if (!fork())
-			main(2, av);
-		else
-		{
-			av[1] = av[2];
-			main(2, av);
-		}
-	}
-	help_message();
 	init_mlx(m);
 	init_env(m);
 	f_multithrd(m);
@@ -99,5 +83,27 @@ int			main(int ac, char **av)
 	mlx_hook(m->win_ptr, 6, 0, cursorfunction, m);
 	mlx_mouse_hook(m->win_ptr, mousefunction, m);
 	mlx_loop(m->mlx_ptr);
+}
+
+int			main(int ac, char **av)
+{
+	t_fractol	*m;
+
+	m = (t_fractol*)malloc(sizeof(t_fractol));
+	if ((ac != 2 && ac != 3) || !init_fractal(m, av[1]))
+		error_message();
+	help_message();
+	if (ac == 3)
+	{
+		if (!fork())
+			win_set(m);
+		else
+		{
+			av[1] = av[2];
+			if (init_fractal(m, av[1]) == 1)
+				win_set(m);
+		}
+	}
+	win_set(m);
 	return (0);
 }
