@@ -6,7 +6,7 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/28 13:56:11 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/28 14:10:57 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		f_mlx_message(t_fractol *m)
 
 void		error_message(void)
 {
-	ft_putendl("usage : ./fractol [fractal set]\n");
+	ft_putendl("usage : ./fractol [fractal set] [fractal set]\n");
 	ft_putendl("[fractal sets]	Mandelbrot");
 	ft_putendl("		Julia");
 	ft_putendl("		Burningship");
