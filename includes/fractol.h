@@ -49,6 +49,7 @@ typedef struct		s_set
 }					t_set;
 
 /* main */
+void		help_message(void);
 void		f_mlx_message(t_fractol *m);
 void		error_message(void);
 int			main(int ac, char **av);

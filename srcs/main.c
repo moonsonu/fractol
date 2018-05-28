@@ -6,12 +6,34 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/19 19:05:43 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/25 17:39:47 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/27 17:10:40 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
+
+void		help_message(void)
+{
+	ft_putendl("\n'*.'*.'*.'*.KEYBOARD.*'.*'.*'.*'");
+	ft_putendl("\nRESET : [R]");
+	ft_putendl("ZOOM : [+]/[-]");
+	ft_putendl("MOVE : [ARROWS]");
+	ft_putendl("ITERATION : [I]/[O]");
+	ft_putendl("CHANGE SETS :");
+	ft_putendl("	[1] - Mandelbrot");
+	ft_putendl("	[2] - Julia");
+	ft_putendl("	[3] - Burningship");
+	ft_putendl("	[4] - Phoenix");
+	ft_putendl("	[5] - Newton");
+	ft_putendl("CHANGE COLORS : [R]/[G]/[B]");
+	ft_putendl("		[Z]/[X]/[C]");
+	ft_putendl("HIDE HELP : [SPACE BAR]");
+	ft_putendl("\n.'*.'*.'*.'*.'MOUSE'.*'.*'.*'.*'");
+	ft_putendl("\n[LEFT CLICK] : bring the posision to");
+	ft_putendl("	       the center");
+	ft_putendl("[WHEEL UP/DOWN] : zoom in/out follows");
+	ft_putendl("		  the cursor position");
+}
 
 void		f_mlx_message(t_fractol *m)
 {
@@ -26,7 +48,7 @@ void		f_mlx_message(t_fractol *m)
 				"ITERATION : [I]/[O]");
 		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 85, 0xFFFFFF, "FRACTAL SETS");
 		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 105, 0xFFFFFF,
-				"[1] :Mandelbrot");
+				"[1] : Mandelbrot");
 		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 125, 0xFFFFFF, "[2] : Julia");
 		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 145, 0xFFFFFF,
 				"[3] : Burningship");
@@ -34,6 +56,10 @@ void		f_mlx_message(t_fractol *m)
 				"[4] : Phoenix");
 		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 185, 0xFFFFFF,
 				"[5] : Newton");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 205, 0xFFFFFF,
+				"COLOR : [R]/[G]/[B]");
+		mlx_string_put(m->mlx_ptr, m->win_ptr, 5, 230, 0xFFFFFF,
+				"        [Z]/[X]/[C]");
 	}
 }
 
@@ -65,6 +91,7 @@ int			main(int ac, char **av)
 			main(2, av);
 		}
 	}
+	help_message();
 	init_mlx(m);
 	init_env(m);
 	f_multithrd(m);

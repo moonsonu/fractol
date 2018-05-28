@@ -6,12 +6,11 @@
 /*   By: ksonu <ksonu@student.42.us.org>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 17:16:38 by ksonu             #+#    #+#             */
-/*   Updated: 2018/05/25 19:11:42 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/27 17:20:59 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 int			key_color(int key, t_fractol *m)
 {
