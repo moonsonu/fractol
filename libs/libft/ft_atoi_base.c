@@ -6,7 +6,7 @@
 /*   By: ksonu <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/28 19:40:34 by ksonu             #+#    #+#             */
-/*   Updated: 2018/04/28 20:04:22 by ksonu            ###   ########.fr       */
+/*   Updated: 2018/05/29 15:03:32 by ksonu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static long		ft_convert(const char *str, int base)
 
 	i = 0;
 	n = 0;
-	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'f') || (str[i] >= 'A' && str[i] <= 'F'))
+	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'f')
+			|| (str[i] >= 'A' && str[i] <= 'F'))
 	{
 		n *= base;
 		if (str[i] >= '0' && str[i] <= '9')
@@ -33,7 +34,7 @@ static long		ft_convert(const char *str, int base)
 	return (n);
 }
 
-int		ft_atoi_base(const char *str, int base)
+int				ft_atoi_base(const char *str, int base)
 {
 	int		i;
 	int		sign;
@@ -51,6 +52,6 @@ int		ft_atoi_base(const char *str, int base)
 	}
 	if (str[i] == '+')
 		i++;
-	num = ft_convert(str + i, base); 
+	num = ft_convert(str + i, base);
 	return (sign * (int)num);
 }
