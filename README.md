@@ -9,12 +9,14 @@
 > ./fractol [fractal set][fractal set]
 ```
 
+```
 usage : ./fractol [fractal set] [fractal set]
 [fractal sets]	Mandelbrot
                 Julia
-		            Burningship
-		            Phoenix
-		            Newton
+		Burningship
+		Phoenix
+		Newton
+```
 
 ## Key
 ```
