@@ -8,7 +8,7 @@
 > make
 > ./fractol [fractal set][fractal set]
 ```
-
+Can open 1-2 fractal sets
 ```
 usage : ./fractol [fractal set] [fractal set]
 [fractal sets]	Mandelbrot
